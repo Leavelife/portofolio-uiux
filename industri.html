@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Industri | Coming Soon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap');
+
+        :root {
+            --paper: #f4f6f3;
+            --ink: #17251f;
+            --muted: #66736d;
+            --line: #dce5df;
+            --accent: #d6f35d;
+            --dark: #233c31;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 28px clamp(24px, 6vw, 96px);
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 88% 14%, rgba(214, 243, 93, .3), transparent 22%),
+                linear-gradient(135deg, #f7f9f6 0%, var(--paper) 55%, #edf1ed 100%);
+            font-family: 'DM Sans', sans-serif;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            z-index: -1;
+            width: 520px;
+            height: 520px;
+            right: -230px;
+            bottom: -230px;
+            border: 1px solid rgba(35, 60, 49, .12);
+            border-radius: 50%;
+            box-shadow: 0 0 0 36px rgba(35, 60, 49, .035), 0 0 0 72px rgba(35, 60, 49, .025);
+        }
+
+        main {
+            width: min(100%, 760px);
+            animation: reveal .8s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 30px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .2em;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 34px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        h1 {
+            max-width: 700px;
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(3.8rem, 10vw, 8rem);
+            line-height: .9;
+            letter-spacing: -.075em;
+        }
+
+        h1 span { color: var(--muted); }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 38px 0 0;
+            padding: 10px 14px;
+            border: 1px solid rgba(35, 60, 49, .14);
+            border-radius: 999px;
+            color: var(--dark);
+            background: rgba(220, 229, 223, .9);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .14em;
+        }
+
+        .status::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--muted);
+            box-shadow: 0 0 0 4px rgba(102, 115, 109, .12);
+        }
+
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 56px;
+            color: var(--ink);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back::before { content: '<-'; font-size: 18px; transition: transform .25s ease; }
+        .back:hover::before { transform: translateX(-5px); }
+
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 22px 20px; }
+            h1 { font-size: clamp(3.6rem, 18vw, 6rem); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="eyebrow">PORTFOLIO / 02</p>
+        <h1>Industri<br><span>is coming soon.</span></h1>
+        <p class="status">COMING SOON</p>
+        <a class="back" href="index.html">Kembali ke portfolio</a>
+    </main>
+</body>
+</html>

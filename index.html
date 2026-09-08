@@ -1,15 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTOFOLIO</title>
+    <title>Portfolio | Digital Experience</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap');
+
+        :root {
+            --paper: #f4f6f3;
+            --ink: #17251f;
+            --muted: #66736d;
+            --panel: #ffffff;
+            --line: #dce5df;
+            --accent: #d6f35d;
+            --accent-deep: #a8c73d;
+            --dark: #233c31;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 28px clamp(24px, 6vw, 96px);
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 91% 12%, rgba(214, 243, 93, .28), transparent 22%),
+                linear-gradient(135deg, #f7f9f6 0%, var(--paper) 55%, #edf1ed 100%);
+            font-family: 'DM Sans', sans-serif;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            z-index: -1;
+            width: 380px;
+            height: 380px;
+            right: -180px;
+            bottom: -160px;
+            border: 1px solid rgba(35, 60, 49, .12);
+            border-radius: 50%;
+            box-shadow: 0 0 0 34px rgba(35, 60, 49, .035), 0 0 0 68px rgba(35, 60, 49, .025);
+        }
+
+        body::after {
+            content: 'EST. 2024';
+            position: fixed;
+            top: 50%;
+            right: -56px;
+            color: rgba(23, 37, 31, .15);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .3em;
+            transform: rotate(90deg);
+        }
+
+        h1 {
+            max-width: 880px;
+            margin: clamp(84px, 14vh, 150px) 0 24px;
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(3.5rem, 9vw, 8.8rem);
+            line-height: .88;
+            letter-spacing: -.075em;
+            animation: rise-in .8s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        h1::after {
+            content: '';
+            display: inline-block;
+            width: clamp(18px, 3vw, 42px);
+            height: clamp(18px, 3vw, 42px);
+            margin: 0 0 .08em .16em;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 9px rgba(214, 243, 93, .2);
+            vertical-align: top;
+        }
+
+        ul {
+            width: min(100%, 980px);
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: item;
+        }
+
+        li {
+            position: relative;
+            min-height: 178px;
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .74);
+            box-shadow: 0 16px 36px rgba(23, 37, 31, .05);
+            animation: rise-in .8s cubic-bezier(.2, .8, .2, 1) both;
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        li:nth-child(2) { animation-delay: .12s; }
+
+        li:hover {
+            border-color: var(--accent-deep);
+            box-shadow: 0 20px 44px rgba(23, 37, 31, .11);
+            transform: translateY(-6px);
+        }
+
+        li::before {
+            content: '0' counter(item);
+            counter-increment: item;
+            display: block;
+            margin-bottom: 34px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            color: var(--ink);
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(1.15rem, 2vw, 1.55rem);
+            font-weight: 700;
+            line-height: 1.15;
+            text-decoration: none;
+        }
+
+        a::after {
+            content: '↗';
+            flex: 0 0 auto;
+            display: grid;
+            width: 40px;
+            height: 40px;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--dark);
+            background: var(--accent);
+            font-size: 20px;
+            transition: transform .3s ease;
+        }
+
+        li:hover a::after { transform: rotate(45deg); }
+
+        @keyframes rise-in {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 22px 20px; }
+            h1 {
+                margin-top: 22vh;
+                font-size: clamp(3.2rem, 18vw, 5.5rem);
+            }
+            ul { grid-template-columns: 1fr; }
+            li {
+                min-height: 150px;
+                padding: 22px;
+            }
+            li::before { margin-bottom: 24px; }
+            body::after { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>PORTOFOLIO</h1>
     <ul>
-        <li><a href="https://portofolio-pendidikan.vercel.app/">PORTOFOLIO PENDIDIKAN</a></li>
-        <li><a href="https://portofolio-industri.vercel.app/">PORTOFOLIO INDUSTRI</a></li>
+        <li><a href="pendidikan.html">PORTOFOLIO PENDIDIKAN</a></li>
+        <li><a href="industri.html">PORTOFOLIO INDUSTRI</a></li>
     </ul>
 </body>
 </html>
