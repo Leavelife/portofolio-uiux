@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Kreator Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap');
+
+        :root {
+            --paper: #f4f6f3;
+            --ink: #17251f;
+            --muted: #66736d;
+            --panel: #ffffff;
+            --line: #dce5df;
+            --accent: #d6f35d;
+            --accent-deep: #a8c73d;
+            --dark: #233c31;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 28px clamp(24px, 6vw, 96px) 64px;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 91% 12%, rgba(214, 243, 93, .28), transparent 22%),
+                linear-gradient(135deg, #f7f9f6 0%, var(--paper) 55%, #edf1ed 100%);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            z-index: -1;
+            width: 380px;
+            height: 380px;
+            right: -180px;
+            bottom: -160px;
+            border: 1px solid rgba(35, 60, 49, .12);
+            border-radius: 50%;
+            box-shadow: 0 0 0 34px rgba(35, 60, 49, .035), 0 0 0 68px rgba(35, 60, 49, .025);
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: rise-in .7s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back::before {
+            content: '←';
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .72);
+            transition: transform .25s ease, background .25s ease;
+        }
+
+        .back:hover::before {
+            transform: translateX(-5px);
+            background: var(--accent);
+        }
+
+        .year {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .22em;
+        }
+
+        main {
+            width: min(100%, 980px);
+            margin: 0 auto;
+        }
+
+        .intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: end;
+            gap: 32px;
+            padding: clamp(72px, 12vh, 130px) 0 46px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 18px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .2em;
+            animation: rise-in .8s .08s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 34px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(3.8rem, 8vw, 7.2rem);
+            line-height: .88;
+            letter-spacing: -.075em;
+            animation: rise-in .8s .16s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        h1::after {
+            content: '';
+            display: inline-block;
+            width: clamp(16px, 2.4vw, 32px);
+            height: clamp(16px, 2.4vw, 32px);
+            margin: 0 0 .08em .13em;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 8px rgba(214, 243, 93, .2);
+            vertical-align: top;
+        }
+
+        .course-mark {
+            min-width: 190px;
+            margin-bottom: 4px;
+            padding: 16px 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .74);
+            box-shadow: 0 16px 36px rgba(23, 37, 31, .05);
+            animation: rise-in .8s .24s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .course-mark span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .course-mark strong {
+            display: block;
+            margin-top: 7px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+        }
+
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: identity;
+        }
+
+        .identity-card {
+            position: relative;
+            min-height: 246px;
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .74);
+            box-shadow: 0 16px 36px rgba(23, 37, 31, .05);
+            counter-increment: identity;
+            overflow: hidden;
+            animation: rise-in .8s cubic-bezier(.2, .8, .2, 1) both;
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        .identity-card:nth-child(1) { animation-delay: .28s; }
+        .identity-card:nth-child(2) { animation-delay: .36s; }
+        .identity-card:nth-child(3) { animation-delay: .44s; }
+        .identity-card:nth-child(4) { animation-delay: .52s; }
+
+        .identity-card::before {
+            content: '0' counter(identity);
+            display: block;
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        .identity-card::after {
+            content: '';
+            position: absolute;
+            width: 118px;
+            height: 118px;
+            right: -76px;
+            bottom: -76px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: .7;
+            transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .identity-card:hover {
+            border-color: var(--accent-deep);
+            box-shadow: 0 20px 44px rgba(23, 37, 31, .11);
+            transform: translateY(-6px);
+        }
+
+        .identity-card:hover::after { transform: scale(1.7); }
+
+        .identity-card h2 {
+            margin: 0 0 14px;
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+            line-height: 1.1;
+            letter-spacing: -.03em;
+        }
+
+        .identity-card p {
+            max-width: 330px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .role {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 7px 9px;
+            border-radius: 999px;
+            color: var(--dark);
+            background: rgba(214, 243, 93, .62);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .12em;
+        }
+
+        .institution {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 34px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+            animation: rise-in .8s .58s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .institution::before {
+            content: '';
+            flex: 0 0 auto;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 5px rgba(214, 243, 93, .2);
+        }
+
+        @keyframes rise-in {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 22px 18px 36px; }
+
+            .intro {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 70px 0 30px;
+            }
+
+            h1 {
+                font-size: clamp(3.4rem, 17vw, 5.5rem);
+                line-height: .9;
+            }
+
+            h1::after {
+                width: 18px;
+                height: 18px;
+                box-shadow: 0 0 0 6px rgba(214, 243, 93, .2);
+            }
+
+            .course-mark { min-width: 0; width: 100%; }
+            .identity-grid { grid-template-columns: 1fr; gap: 12px; }
+
+            .identity-card {
+                min-height: 220px;
+                padding: 22px;
+            }
+
+            .identity-card::before { margin-bottom: 22px; }
+            .institution { margin-top: 24px; }
+        }
+
+        @media (hover: none) {
+            .identity-card:hover {
+                border-color: var(--line);
+                box-shadow: 0 16px 36px rgba(23, 37, 31, .05);
+                transform: none;
+            }
+
+            .identity-card:active {
+                border-color: var(--accent-deep);
+                transform: scale(.99);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <a class="back" href="index.html">Kembali</a>
+        <span class="year">UI/UX — 2026</span>
+    </header>
+
+    <main>
+        <section class="intro" aria-labelledby="about-title">
+            <div>
+                <p class="eyebrow">ABOUT THE CREATOR</p>
+                <h1 id="about-title">Tentang<br>Kami.</h1>
+            </div>
+            <aside class="course-mark" aria-label="Informasi mata kuliah">
+                <span>Mata Kuliah</span>
+                <strong>UI / UX</strong>
+            </aside>
+        </section>
+
+        <ul class="identity-grid" aria-label="Identitas pembuat anonim">
+            <li class="identity-card">
+                <span class="role">CREATIVE MEMBER</span>
+                <h2>Raka Senandika</h2>
+                <p>Mahasiswa Pendidikan Teknik Informatika yang tertarik pada riset pengguna dan pengalaman digital yang mudah digunakan.</p>
+            </li>
+            <li class="identity-card">
+                <span class="role">DESIGN MEMBER</span>
+                <h2>Nara Kirana</h2>
+                <p>Mahasiswi Pendidikan Teknik Informatika yang berfokus pada desain antarmuka, visual sistem, dan prototyping interaktif.</p>
+            </li>
+            <li class="identity-card">
+                <span class="role">UX MEMBER</span>
+                <h2>Dimas Arunika</h2>
+                <p>Mahasiswa Pendidikan Teknik Informatika yang menyukai analisis kebutuhan, alur pengguna, dan penyelesaian masalah desain.</p>
+            </li>
+            <li class="identity-card">
+                <span class="role">RESEARCH MEMBER</span>
+                <h2>Luna Aditya</h2>
+                <p>Mahasiswi Pendidikan Teknik Informatika yang tertarik pada usability testing, konten, dan desain berpusat pada manusia.</p>
+            </li>
+        </ul>
+
+        <p class="institution">
+            Program Studi Pendidikan Teknik Informatika · Departemen Elektro dan Informatika<br>
+            Fakultas Teknik · Universitas Negeri Malang · Tahun 2026
+        </p>
+    </main>
+</body>
+</html>
